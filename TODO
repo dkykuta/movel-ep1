@@ -4,3 +4,20 @@ que escolhi como RSS para trabalharmos (tinha que colocar isso no paca)
 http://www.usp.br/agen/
 
 Acho que daremos conta disso.
+
+
+------------------
+Como começar a desenvolver:
+
+1) Baixe o ADT Bundle
+2) Abra-o e coloque New Project > Other.
+    Android Project from Existing Code. Selecione a pasta <REP>/AgUSP
+3) OK. Finish.
+4) Nós vamos mexer na pasta assets/www, aparentemente.
+
+Como testar:
+1) No celular, ative o modo desenvolvedor / modo debug.
+2) Ligue o celular por USB no PC
+3) Botão da direita no projeto (AgUSP) e Run As > Android Application
+4) Escolha seu celular e dê OK
+
