@@ -1,1 +1,5 @@
 AgUSP/bin
+*.aux
+*.log
+*.tex~
+*.fdb_latexmk
