@@ -19,7 +19,7 @@ agUsp.dinamicContent = {
 		"cat=1143": {titulo: "Vídeos"},
 		},
 	categsInitialized : false,
-		
+	
 	init : function() {
 		$(document)
 				.bind("pagebeforechange",
