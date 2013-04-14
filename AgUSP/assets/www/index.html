@@ -13,8 +13,8 @@
         <script type="text/javascript">
         	var agUsp = {};
         </script>
-        <script type="text/javascript" src="js/dinamic.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/dinamic.js"></script>
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	    <script type="text/javascript">
 	    	app.init();
@@ -58,9 +58,9 @@
 		</div>
 		
 		<div data-role="page" id="categs" data-url="categs">
-			<div data-role="header">
+			<div data-role="header" data-position="fixed">
 				<h1>Categorias</h1>
-				<a href="#all" data-icon="back">Voltar</a>
+				<a href="#" data-icon="back" data-rel="back">Voltar</a>
 				<a href="#config" data-icon="gear">Config</a>
 			</div>
 			<div data-role="content">		
@@ -70,7 +70,7 @@
        	</div>
         
         <div id="categChange" data-role="page" data-url="categChange">
-        	<div data-role="header">
+        	<div data-role="header" data-position="fixed">
         		<h1></h1>
         		<a href="javascript:app.refresh()" data-icon="refresh">Atualizar</a>
 				<a href="#config" data-icon="gear">Config</a></div>
@@ -85,6 +85,16 @@
 				</div>
 			</div>
 		</div>
+		
+		 <div id="feedDetail" data-role="page" data-url="feedDetail">
+		 	<div data-role="header" data-position="fixed">
+		 		<a href="#" data-icon="back" data-rel="back">Voltar</a>
+		 		<a href="#config" data-icon="gear">Config</a>
+        		<h1></h1>
+        	</div>
+        	<div data-role="content">
+        	</div>
+		 </div>
         
         
     </body>

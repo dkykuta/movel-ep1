@@ -24,7 +24,7 @@ var app = {
     },
     
     constroiFeedHtml: function(feedItem) {
-    	return "<div data-role=\"button\"><a href=\"#loadFeed?feedId=" + app.getEntryID(feedItem) + "\">" + 
+    	return "<div data-role=\"button\"><a href=\"#feedDetail?feedId=" + app.getEntryID(feedItem) + "\">" + 
     	feedItem.title +"</a></div>"
     },
     
@@ -122,6 +122,13 @@ var app = {
     			localStorage.setItem(app.settings.FEED_ENTRY_KEY+id, JSON.stringify(entry));
     		}
         	localStorage.setItem(app.settings.FEED_CATEGORY_KEY+category, JSON.stringify(ids));
+        },
+        
+        getFeedById: function(id) {
+        	var entry = localStorage.getItem(app.settings.FEED_ENTRY_KEY+id);
+        	if (entry == null)
+        		return null;
+        	return JSON.parse(entry);
         },
         
         getCachedFeed: function(category) {

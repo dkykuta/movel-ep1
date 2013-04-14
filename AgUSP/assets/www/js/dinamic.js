@@ -25,10 +25,16 @@ agUsp.dinamicContent = {
 				.bind("pagebeforechange",
 						function(e, data) {
 							if (typeof data.toPage === "string") {
-								var u = $.mobile.path.parseUrl(data.toPage), re = /^#categChange/;
+								var u = $.mobile.path.parseUrl(data.toPage);
 
-								if (u.hash.search(re) !== -1) {
+								if (u.hash.search(/^#categChange/) !== -1) {
 									agUsp.dinamicContent.showCategory(u,
+											data.options);
+									e.preventDefault();
+								}
+								
+								if (u.hash.search(/^#feedDetail/) !== -1) {
+									agUsp.dinamicContent.showDetail(u,
 											data.options);
 									e.preventDefault();
 								}
@@ -56,6 +62,32 @@ agUsp.dinamicContent = {
 
 //		$content.html(markup);
 		app.getResultsOnContainer(categoryKey, $content);
+		
+		$page.page();
+
+		options.dataUrl = urlObj.href;
+
+		$.mobile.changePage($page, options);
+	},
+	
+	showDetail : function(urlObj, options) {
+		var feedId = urlObj.hash.replace(/.*feedId=/, ""), pageSelector = urlObj.hash
+				.replace(/\?.*$/, "");
+		var feed = app.settings.getFeedById(feedId);
+		var feedTitle = "",
+			feedContent = "";
+		if (feed != null) {
+			feedTitle = feed.title;
+			feedContent = feed.content;
+		}
+				
+		var $page = $(pageSelector), 
+			$header = $page.children(":jqmData(role=header)"), 
+			$content = $page.children(":jqmData(role=content)"); 
+
+		$header.find("h1").html(feedTitle);
+
+		$content.html(feedContent);
 		
 		$page.page();
 
