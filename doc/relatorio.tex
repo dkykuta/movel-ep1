@@ -9,8 +9,86 @@
 \begin{document}
 \cabecalho
 
-\section{Titulo}
+\section{Motivação}
+Bem, a motivação foi bem simples... Esse é um trabalho que vale nota desta matéria.
+Quanto à escolha do feed da Agência USP de Notícias, nós escolhemos ele aleatoriamente
+dentre as possíveis opções.
 
-Texto
+
+%%%%%%%%%%%%%%%%%
+%como usar o programa, cada funcionalidade...
+\section{Manual}
+A interface do programa é bem simples e fácil de usar, não muito diferente de \textit{rss readers}
+existentes para plataformas móveis.
+
+O programa começa com uma \textit{splash-screen} mostrando o carregamento inicial, e depois
+mostra a tela inicial de listagem das entradas do feed.
+
+\begin{itemize}
+    \item \textbt{Página de Listagem}: lista as entradas do feed da categoria seleciona (mostrada no cabeçalho). Funcionalidades:
+        \begin{itemize}
+            \item \textbt{Atualizar}: apaga o cache dos feeds dessa categoria, e puxa os feeds do site novamente.
+            \item \textbt{Config}: vai para a página de configurações.
+            \item \textbt{ALL}: muda a categoria selecionada para <ALL> (todas categorias).
+            \item \textbt{Outras Categorias}: vai para o menu de seleção de categorias.
+            \item Clicando em qualquer item do feed vai para a página de notícia.
+        \end{itemize}
+    \item \textbt{Página de Seleção de Categorias}: mostra as categorias do feed.
+        \begin{itemize}
+            \item \textbt{Voltar}: volta para a página anterior.
+            \item \textbt{Config}: vai para a página de configurações.
+            \item Clicando em qualquer categoria vai para a página de listagem para a categoria selecionada.
+        \end{itemize}
+    \item \textbt{Página de Notícia}: mostra em detalhes uma notícia selecionada (uma entrada do feed - um dos items na página de listagem).
+    \item \textbt{Página de Configuração}: possibilita a consulta e modificação dos valores de configuração do app.
+        \begin{itemize}
+            \item \textbt{Voltar}: volta para a página anterior.
+            \item \textbt{Cancelar}: cancela as alterações feitas.
+            \item \textbt{Salvar}: salva as alterações feitas.
+        \end{itemize}
+\end{itemize}
+
+%%%%%%%%%%%%%%
+%breve explicação do funcionamento da implementação de cada parte significativa do app
+\section{Estrutura do Código}
+Partindo de um template de projeto padrão do PhoneGap, só alteramos coisas na pasta 
+\textit{assets/www}. Criamos outro arquivo .css, alteramos o index.html e mexemos bastante
+nos arquivos .js na pasta \textit{js}.
+
+Implementamos a maior parte do código javascript no arquivo \textit{js/index.js}.
+Ele define um objeto \textit{app} com as funções e atributos usados pelo programa.
+
+Para adquirir o feed, usamos a Google Feed API. O app carrega ela dinâmicamente pela web,
+usando a própria API do Google para tal.
+Essa API não só deixa o trabalho de pegar o feed bem fácil como ela também permite pegar mais
+entradas do que o site normalmente manda, usufruindo do cache do feed existente nos servidores
+do Google.
+
+Em relação à interface gráfica com o usuário, usamos a biblioteca jQuery Mobile, que é multi
+plataforma e ajuda com a criação da interface.
+
+A partir que gerencia as configurações e o cache do feed é o sub-objeto \textit{app.settings}.
+Ele define as funções que cuidam dos valores de config e do cache. Para guardar os dados de 
+config e o cache de forma persistente no dispositivo usamos em ambos os casos o sistema
+de \textit{localStorage} do HTML5, quer permite salvar dados de forma persistente no formato
+de string numa estrutura que funciona como uma hashtable.
+
+
+%%%%%%%%%%%%%
+%sobre o processo de aprendizado, desenvolvimento e testes do app
+\section{Conclusões}
+Nós concluimos que fazer uma aplicação multi-plataforma para \textit{mobiles} não é muito fácil,
+mas existem ferramentas que ajudam bastante com isso.
+
+Sendo acostumados a programar em linguagens de alto nível como C++, Java e Python, fazer o app 
+inteiramente em HTML e JavaScript foi bem confuso no início. Perdemos muito tempo no começo
+descobrindo como as coisas funcionavam pra conseguir alterá-las ou implementar outras.
+Depois que entendemos como funcionava a estrutura do app para o PhoneGap, ai começamos a 
+trabalhar mais eficientemente.
+
+Outra coisa que ajudou bastante no desenvolvimento e nos testes foi o Android Developer Tools,
+o qual usamos pra desenvolver o app e testá-lo. Uma vez que descobrimos como gerar mensagens de
+log no app e vê-las no ADT conseguimos \textit{debuggar} alguns problemas que não conseguíamos 
+antes. E a partir do ADT foi bem fácil testar o app diretamente em nossos dispositivos Android.
 
 \end{document}
