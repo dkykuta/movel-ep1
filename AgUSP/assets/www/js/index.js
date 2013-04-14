@@ -42,7 +42,7 @@ var app = {
     
     getResults: function(category) {
     	var container = $("#feedDiv");
-    	var cacheFeeds = app.settings.getCachedFeed();
+    	var cacheFeeds = app.settings.getCachedFeed(category);
     	if (cacheFeeds!=null) {
     		console.log("LOADING FROM CACHE");
     		app.addFeeds(container, cacheFeeds);
@@ -60,7 +60,7 @@ var app = {
         	feed.load(function(result) {
         		if (!result.error) {
         			app.addFeeds(container, result.feed.entries);
-        			app.settings.saveFeed(result.feed.entries);
+        			app.settings.saveFeed(result.feed.entries, category);
         		}
         	});
     	}
@@ -82,10 +82,6 @@ var app = {
 	    
     refresh: function() {
     	console.log("REFRESHING " + app.lastCateg);
-//    	app.settings.removeCachedFeed();
-//    	var container = $("#feedDiv");
-//    	container.empty(); //this removes all childs of container, leaving it empty
-//    	app.getResults("all");
     	app.changeToCategory(app.lastCateg)
     },
     
@@ -104,26 +100,66 @@ var app = {
 		google.setOnLoadCallback(app.getResults);
     },
     
+    getEntryID: function(entry) {
+    	var entryLink = entry.link.split('=');
+    	return entryLink[entryLink.length - 1];
+    },
+    
     /////////////////////////////////////////////////////////////////////
     // holds getters and setters for config settings and persistent data.
     settings: {
-    	FEED_CACHE_KEY: "feedCache",
+    	FEED_ENTRY_KEY: "feedEntry",
+    	FEED_CATEGORY_KEY: "feedCat",
     	NUM_ENTRIES_KEY: "numEntries",
     
-        saveFeed: function(feed) {
-        	localStorage.setItem(app.settings.FEED_CACHE_KEY, JSON.stringify(feed));
+        saveFeed: function(feeds, category) {
+        	category = typeof category !== 'undefined' ? category : 'all';
+        	var ids = app.settings.getFeedCategoryIDList(category);
+        	if (ids == null) { ids = []; }
+        	for (var i = 0; i < feeds.length; i++) {
+    			var entry = feeds[i];
+    			var id = app.getEntryID(entry);
+    			if (ids.indexOf(id) == -1) {
+    				ids.push(id);
+    			}
+    			localStorage.setItem(app.settings.FEED_ENTRY_KEY+id, JSON.stringify(entry));
+    		}
+        	localStorage.setItem(app.settings.FEED_CATEGORY_KEY+category, JSON.stringify(ids));
         },
         
-        getCachedFeed: function() {
-        	var cache = localStorage.getItem(app.settings.FEED_CACHE_KEY);
+        getCachedFeed: function(category) {
+        	category = typeof category !== 'undefined' ? category : 'all';
+        	var ids = app.settings.getFeedCategoryIDList(category);
+        	if (ids == null) { ids = []; }
+        	var entries = [];
+        	for (var i = 0; i < ids.length; i++) {
+    			var id = ids[i];
+    			var entry = localStorage.getItem(app.settings.FEED_ENTRY_KEY+id);
+            	if (entry != null) {
+            		entries.push( JSON.parse(entry) );
+            	}
+    		}
+        	return entries.length > 0 ? entries : null;
+        },
+        
+        getFeedCategoryIDList: function(category) {
+        	var cache = localStorage.getItem(app.settings.FEED_CATEGORY_KEY+category);
         	if (cache != null) {
         		return JSON.parse(cache);
         	}
         	return null;
         },
         
-        removeCachedFeed: function() {
-        	localStorage.removeItem(app.settings.FEED_CACHE_KEY);
+        removeCachedFeed: function(category) {
+        	category = typeof category !== 'undefined' ? category : 'all';
+        	var ids = app.settings.getFeedCategoryIDList(category);
+        	if (ids != null) {
+        		for (var i = 0; i < ids.length; i++) {
+        			var id = ids[i];
+        			localStorage.removeItem(app.settings.FEED_ENTRY_KEY+id);
+        		}
+        	}
+        	localStorage.removeItem(app.settings.FEED_CATEGORY_KEY+category);
         },
         
         setNumFeedEntries: function(num) {
