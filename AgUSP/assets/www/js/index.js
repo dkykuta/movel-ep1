@@ -1,6 +1,27 @@
 var app = {
 	url: "http://www.usp.br/agen/?feed=rss2",
 	
+	//pra iterar pelo dict D: for(var x in D) { console.log(x, D[x]); }
+	categoriesMap: {  "Cursos e palestras":1, 
+						"Agenda Cultural":3,
+						"Defesas":105,
+						"Editoriais":21,
+						"Publicações":4,
+						"Quadro de Avisos":5,
+						
+						"Ciências":22,
+						"Cultura":23,
+						"Educação":24,
+						"Especiais":25,
+						"Esporte e Lazer":26,
+						"Institucional":27,
+						"Meio ambiente":28,
+						"Saúde":29,
+						"Sociedade":30,
+						"Tecnologia":31,
+						"Vídeos":1143,
+						},
+
 	entriesCache: {},
 		
 	addFeeds: function(container, feeds) {
