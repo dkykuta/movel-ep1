@@ -89,10 +89,10 @@ var app = {
     	app.changeToCategory(app.lastCateg)
     },
     
-    initializeNavbar: function() {
-    	
+    init: function() {
+    	app.googleFeedInitialize("http://www.usp.br/agen/?feed=rss2");
     },
-
+    
     googleFeedInitialize: function(url) {
     	google.load("feeds", "1");
     	app.url = url;

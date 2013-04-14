@@ -6,13 +6,25 @@ TODO LIST
 Ou seja, mudar o init do programa para não travar.
 Se não tiver internet, coloca alguma mensagem de erro.
 
+-----
+
 * alterar cache para receber como parametro a categoria
 Sempre o parametro categoria serah uma string no formato "cat=1"
 para facilitar nossa vida
 
+-----
+
+* listar coisas que precisa no config
+<CHECKBOX> devo economizar banda?
+<LIST>Quais categorias baixar na inicialização
+
+-----
+
 * http://jquerymobile.com/demos/1.2.0/docs/pages/page-cache.html
 O cache ainda não leva em conta as imagens... Ou leva? Testa isso.
 Talvez o link acima ajude em algo
+
+-----
 
 * Descubra uma maneira de fazer o conteudo ser preenchido dinamicamente
 http://jquerymobile.com/demos/1.2.0/docs/pages/page-dynamic.html
@@ -26,11 +38,20 @@ da função certa...
 a criação do html pode deixar que eu faço, desde que você me diga onde
 fazer
 
+-----
+
+-----
+
+-----
+
 <ASSINED TO HARUKI>
 * Criação das páginas de exibição de feeds dinamica
 * Encontrar uma boa maneira de exibir o conteúdo do feed.
 Talvez dinamicamente, de novo... => Alteração de como é salvo o cache
 * Estudar popups e caixas de diálogo
+Coisas aleatórias que não escrevi por preguiça, como fazer a tela de
+config, fazer o remendo para o que temos agora (mudar titulo da tela
+principal, etc).
 
 
 
