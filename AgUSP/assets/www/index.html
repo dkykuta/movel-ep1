@@ -10,43 +10,21 @@
         
         <script type="text/javascript" src="cordova-2.5.0.js"></script>
         <script src="js/jquery.js"></script>
+        <script type="text/javascript">
+        	var agUsp = {};
+        </script>
+        <script type="text/javascript" src="js/dinamic.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	    <script type="text/javascript">
 	    	app.init();
+	    	agUsp.dinamicContent.init();
 	    </script>
 	    <script src="js/jquery.mobile-1.3.0.js"></script>
     </head>
     
     <body>
         <div data-role="page" id="all">
-        
-        	<div data-role="panel" data-position="right" data-display="overlay" id="categP">
-        		<div data-role="navbar" data-iconpos="top" id="navcategorias">
-					<ul>
-						<!-- Por incrível que pareça, o jQuery Mobile não coopera com
-						a criação dinâmica disso. -->
-						<li><a href="javascript:app.changeToCategoryAndClosePanel('cat=1')" data-icon="info">Cursos e palestras</a></li>
-						<li><a href="javascript:app.changeToCategoryAndClosePanel('cat=3')" data-icon="info">Agenda Cultural</a></li>
-						<li><a href="javascript:app.changeToCategoryAndClosePanel('cat=105')" data-icon="info">Defesas</a></li>
-						<li><a href="javascript:app.changeToCategoryAndClosePanel('cat=21')" data-icon="info">Editoriais</a></li>
-						<li><a href="javascript:app.changeToCategoryAndClosePanel('cat=4')" data-icon="info">Publicações</a></li>
-						<li><a href="javascript:app.changeToCategoryAndClosePanel('cat=5')" data-icon="info">Quadro de Avisos</a></li>
-						
-						<li><a href="javascript:app.changeToCategoryAndClosePanel('cat=22')" data-icon="info">Ciências</a></li>
-						<li><a href="javascript:app.changeToCategoryAndClosePanel('cat=23')" data-icon="info">Cultura</a></li>
-						<li><a href="javascript:app.changeToCategoryAndClosePanel('cat=24')" data-icon="info">Educação</a></li>
-						<li><a href="javascript:app.changeToCategoryAndClosePanel('cat=25')" data-icon="info">Especiais</a></li>
-						<li><a href="javascript:app.changeToCategoryAndClosePanel('cat=26')" data-icon="info">Esporte e Lazer</a></li>
-						<li><a href="javascript:app.changeToCategoryAndClosePanel('cat=27')" data-icon="info">Institucional</a></li>
-						<li><a href="javascript:app.changeToCategoryAndClosePanel('cat=28')" data-icon="info">Meio ambiente</a></li>
-						<li><a href="javascript:app.changeToCategoryAndClosePanel('cat=29')" data-icon="info">Saúde</a></li>
-						<li><a href="javascript:app.changeToCategoryAndClosePanel('cat=30')" data-icon="info">Sociedade</a></li>
-						<li><a href="javascript:app.changeToCategoryAndClosePanel('cat=31')" data-icon="info">Tecnologia</a></li>
-					</ul>
-	       		</div>
-        	</div>
-        
             <div data-role="header" data-position="fixed">
 				<h1>ALL</h1>
 				<a href="javascript:app.refresh()" data-icon="refresh">Atualizar</a>
@@ -60,7 +38,7 @@
 				<div data-role="navbar" data-iconpos="left">
 					<ul>
 						<li><a href="#all" data-icon="home">ALL</a></li>
-						<li><a href="#categP" data-icon="grid">Outras Categorias</a></li>
+						<li><a href="#categs" data-icon="grid">Outras Categorias</a></li>
 					</ul>
 				</div>
 			</div>
@@ -80,7 +58,35 @@
 				<a href="#" data-icon="check">Salvar</a>
 			</div>
 		</div>
+		
+		<div data-role="page" id="categs">
+       		<div data-role="navbar" data-iconpos="top" id="navcategorias">
+				<ul>
+					<li><a href="#categChange?cat=1" data-icon="info">Cursos e palestras</a></li>
+					<li><a href="#categChange?cat=3" data-icon="info">Agenda Cultural</a></li>
+					<li><a href="#categChange?cat=105" data-icon="info">Defesas</a></li>
+					<li><a href="#categChange?cat=21" data-icon="info">Editoriais</a></li>
+					<li><a href="#categChange?cat=4" data-icon="info">Publicações</a></li>
+					<li><a href="#categChange?cat=5" data-icon="info">Quadro de Avisos</a></li>
+					
+					<li><a href="#categChange?cat=22" data-icon="info">Ciências</a></li>
+					<li><a href="#categChange?cat=23" data-icon="info">Cultura</a></li>
+					<li><a href="#categChange?cat=24" data-icon="info">Educação</a></li>
+					<li><a href="#categChange?cat=25" data-icon="info">Especiais</a></li>
+					<li><a href="#categChange?cat=26" data-icon="info">Esporte e Lazer</a></li>
+					<li><a href="#categChange?cat=27" data-icon="info">Institucional</a></li>
+					<li><a href="#categChange?cat=28" data-icon="info">Meio ambiente</a></li>
+					<li><a href="#categChange?cat=29" data-icon="info">Saúde</a></li>
+					<li><a href="#categChange?cat=30" data-icon="info">Sociedade</a></li>
+					<li><a href="#categChange?cat=31" data-icon="info">Tecnologia</a></li>
+				</ul>
+       		</div>
+       	</div>
         
+        <div id="categChange" data-role="page" data-url="categChange">
+        	<div data-role="header"><h1></h1></div>
+        	<div data-role="content"></div>
+		</div>
         
         
     </body>
