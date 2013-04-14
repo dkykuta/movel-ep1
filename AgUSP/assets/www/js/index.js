@@ -1,25 +1,27 @@
 var app = {
 	url: "http://www.usp.br/agen/?feed=rss2",
 	
+	lastCateg: "all",
+	
 	//pra iterar pelo dict D: for(var x in D) { console.log(x, D[x]); }
 	categoriesMap: {  "Cursos e palestras":1, 
 						"Agenda Cultural":3,
 						"Defesas":105,
 						"Editoriais":21,
-						"Publicações":4,
+						"PublicaÃ§Ãµes":4,
 						"Quadro de Avisos":5,
 						
-						"Ciências":22,
+						"CiÃªncias":22,
 						"Cultura":23,
-						"Educação":24,
+						"EducaÃ§Ã£o":24,
 						"Especiais":25,
 						"Esporte e Lazer":26,
 						"Institucional":27,
 						"Meio ambiente":28,
-						"Saúde":29,
+						"SaÃºde":29,
 						"Sociedade":30,
 						"Tecnologia":31,
-						"Vídeos":1143,
+						"VÃ­deos":1143,
 						},
 
 	entriesCache: {},
@@ -38,7 +40,7 @@ var app = {
         container.append(string);
     },
     
-    getResults: function() {
+    getResults: function(category) {
     	var container = $("#feedDiv");
     	var cacheFeeds = app.settings.getCachedFeed();
     	if (cacheFeeds!=null) {
@@ -47,7 +49,12 @@ var app = {
     	}
     	else { 
     		console.log("USING FEED API TO LOAD");
-    		var feed = new google.feeds.Feed(app.url);
+    		feedurl = app.url;
+    		if (category != "all") {
+    			feedurl = app.url + "&" + category;
+    		}
+    		console.log(feedurl);
+    		var feed = new google.feeds.Feed(feedurl);
     		feed.includeHistoricalEntries();
         	feed.setNumEntries(app.settings.getNumFeedEntries());
         	feed.load(function(result) {
@@ -58,13 +65,32 @@ var app = {
         	});
     	}
     },
-	    
-    refresh: function() {
-    	console.log("REFRESHING");
+    
+    changeToCategory: function(categ) {
+    	console.log("CHANGE PAGE TO " + categ);
+    	app.lastCateg = categ;
     	app.settings.removeCachedFeed();
     	var container = $("#feedDiv");
     	container.empty(); //this removes all childs of container, leaving it empty
-    	app.getResults();
+    	app.getResults(categ);
+    },
+    
+    changeToCategoryAndClosePanel: function(categ) {
+    	app.changeToCategory(categ);
+    	$( "#categP" ).panel( "close" );
+    },
+	    
+    refresh: function() {
+    	console.log("REFRESHING " + app.lastCateg);
+//    	app.settings.removeCachedFeed();
+//    	var container = $("#feedDiv");
+//    	container.empty(); //this removes all childs of container, leaving it empty
+//    	app.getResults("all");
+    	app.changeToCategory(app.lastCateg)
+    },
+    
+    initializeNavbar: function() {
+    	
     },
 
     googleFeedInitialize: function(url) {

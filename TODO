@@ -1,23 +1,41 @@
-Tem umas coisas que vou colocar depois, mas aqui ta o site da agencia USP
-que escolhi como RSS para trabalharmos (tinha que colocar isso no paca)
+TODO LIST
 
-http://www.usp.br/agen/
+<ASSIGNED TO FEFINHA>
 
-Acho que daremos conta disso.
+* O programa tem que abrir mesmo sem carregar as coisas.
+Ou seja, mudar o init do programa para não travar.
+Se não tiver internet, coloca alguma mensagem de erro.
+
+* alterar cache para receber como parametro a categoria
+Sempre o parametro categoria serah uma string no formato "cat=1"
+para facilitar nossa vida
+
+* http://jquerymobile.com/demos/1.2.0/docs/pages/page-cache.html
+O cache ainda não leva em conta as imagens... Ou leva? Testa isso.
+Talvez o link acima ajude em algo
+
+* Descubra uma maneira de fazer o conteudo ser preenchido dinamicamente
+http://jquerymobile.com/demos/1.2.0/docs/pages/page-dynamic.html
+
+Como usar isso com as nossas diversas categorias? Estou com sono demais
+para pensar e ler direito isso.
+
+OBS: não precisa fazer o html em si, basta fazer a captura e chamada
+da função certa...
+
+a criação do html pode deixar que eu faço, desde que você me diga onde
+fazer
+
+<ASSINED TO HARUKI>
+* Criação das páginas de exibição de feeds dinamica
+* Encontrar uma boa maneira de exibir o conteúdo do feed.
+Talvez dinamicamente, de novo... => Alteração de como é salvo o cache
+* Estudar popups e caixas de diálogo
 
 
-------------------
-Como começar a desenvolver:
 
-1) Baixe o ADT Bundle
-2) Abra-o e coloque New Project > Other.
-    Android Project from Existing Code. Selecione a pasta <REP>/AgUSP
-3) OK. Finish.
-4) Nós vamos mexer na pasta assets/www, aparentemente.
-
-Como testar:
-1) No celular, ative o modo desenvolvedor / modo debug.
-2) Ligue o celular por USB no PC
-3) Botão da direita no projeto (AgUSP) e Run As > Android Application
-4) Escolha seu celular e dê OK
+# ANOTACOES ALEATORIAS
+http://jquerymobile.com/demos/1.3.0/docs/widgets/navigation/
+Seria bom uma transição por ajax...
+http://jquerymobile.com/demos/1.3.0/docs/widgets/panels/
 
