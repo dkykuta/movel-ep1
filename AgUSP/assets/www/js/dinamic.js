@@ -91,7 +91,9 @@ agUsp.dinamicContent = {
 		
 		$page.page();
 
-		options.dataUrl = urlObj.href;
+		console.log(urlObj.hash.replace(/#/, ""));
+		
+		options.dataUrl = urlObj.hash.replace(/#/, "");
 
 		$.mobile.changePage($page, options);
 	},
