@@ -54,7 +54,8 @@ agUsp.dinamicContent = {
 
 		$header.find("h1").html(categoryName);
 
-		$content.html(markup);
+//		$content.html(markup);
+		app.getResultsOnContainer(categoryKey, $content);
 		
 		$page.page();
 
@@ -71,7 +72,7 @@ agUsp.dinamicContent = {
 		markup = "<ul>";
 		var categs = agUsp.dinamicContent.categories;
 		for (var i in categs) {
-			markup = markup + "<li><a href=\"#categChange?" + i + "\" data-icon=\"info\">" + categs[i].titulo + " XD</a></li>"; 
+			markup = markup + "<li><a href=\"#categChange?" + i + "\" data-icon=\"info\">" + categs[i].titulo + "</a></li>"; 
 		}
 		markup += "</ul>";
 		

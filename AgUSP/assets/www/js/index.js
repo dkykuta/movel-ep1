@@ -6,10 +6,7 @@ var app = {
 	entriesCache: {},
 		
 	addFeeds: function(container, feeds) {
-		for (var i = 0; i < feeds.length; i++) {
-			var entry = feeds[i];
-			app.addFeedItem(container, entry);
-		}
+		container.html(app.addFeedsMaroto(feeds));
 		container.trigger( "create" );
 	},
 	
@@ -18,21 +15,25 @@ var app = {
         container.append(string);
     },
     
-    addFeedsMaroto: function(container, feeds) {
+    addFeedsMaroto: function(feeds) {
     	var markup = "";
     	for (var i = 0; i < feeds.length; i++) {
 			markup = markup + app.constroiFeedHtml(feeds[i]);
 		}
-    	
+    	return markup;
     },
     
     constroiFeedHtml: function(feedItem) {
-    	return "<div data-role=\"collapsible\"><h3>" + feedItem.title +
-	    "</h3>" + feedItem.content + "</div>"
+    	return "<div data-role=\"button\"><a href=\"#loadFeed?feedId=" + app.getEntryID(feedItem) + "\">" + 
+    	feedItem.title +"</a></div>"
     },
     
-    getResults: function(category) {
+    getResults: function() {
     	var container = $("#feedDiv");
+    	app.getResultsOnContainer("all", container);
+    },
+    
+    getResultsOnContainer: function(category, container) {
     	var cacheFeeds = app.settings.getCachedFeed(category);
     	if (cacheFeeds!=null) {
     		console.log("LOADING FROM CACHE");
