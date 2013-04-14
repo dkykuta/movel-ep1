@@ -19,8 +19,11 @@
 
 package br.usp.ime.agusp.movel;
 
+import org.apache.cordova.Config;
+import org.apache.cordova.DroidGap;
+
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import org.apache.cordova.*;
 
 public class AgUSP extends DroidGap
 {
@@ -31,6 +34,8 @@ public class AgUSP extends DroidGap
         // Set by <content src="index.html" /> in config.xml
         super.loadUrl(Config.getStartUrl());
         //super.loadUrl("file:///android_asset/www/index.html")
+        super.setIntegerProperty("splashscreen", R.drawable.splash);
+        super.loadUrl(Config.getStartUrl(), 10000);
     }
 }
 

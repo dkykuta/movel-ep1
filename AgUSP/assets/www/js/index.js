@@ -3,27 +3,6 @@ var app = {
 	
 	lastCateg: "all",
 	
-	//pra iterar pelo dict D: for(var x in D) { console.log(x, D[x]); }
-	categoriesMap: {  "Cursos e palestras":1, 
-						"Agenda Cultural":3,
-						"Defesas":105,
-						"Editoriais":21,
-						"Publicações":4,
-						"Quadro de Avisos":5,
-						
-						"Ciências":22,
-						"Cultura":23,
-						"Educação":24,
-						"Especiais":25,
-						"Esporte e Lazer":26,
-						"Institucional":27,
-						"Meio ambiente":28,
-						"Saúde":29,
-						"Sociedade":30,
-						"Tecnologia":31,
-						"Vídeos":1143,
-						},
-
 	entriesCache: {},
 		
 	addFeeds: function(container, feeds) {
@@ -35,9 +14,21 @@ var app = {
 	},
 	
     addFeedItem: function(container, feedItem) {
-	    var string = "<div data-role=\"collapsible\"><h3>" + feedItem.title +
-	    "</h3>" + feedItem.content + "</div>";
+	    var string = app.constroiFeedHtml(feedItem);
         container.append(string);
+    },
+    
+    addFeedsMaroto: function(container, feeds) {
+    	var markup = "";
+    	for (var i = 0; i < feeds.length; i++) {
+			markup = markup + app.constroiFeedHtml(feeds[i]);
+		}
+    	
+    },
+    
+    constroiFeedHtml: function(feedItem) {
+    	return "<div data-role=\"collapsible\"><h3>" + feedItem.title +
+	    "</h3>" + feedItem.content + "</div>"
     },
     
     getResults: function(category) {
@@ -89,7 +80,12 @@ var app = {
     	app.changeToCategory(app.lastCateg)
     },
     
+    dismissSplash: function () {
+    	document.addEventListener("deviceready", function() {navigator.splashscreen.hide();}, false);
+    },
+    
     init: function() {
+    	app.dismissSplash();
     	app.googleFeedInitialize("http://www.usp.br/agen/?feed=rss2");
     },
     

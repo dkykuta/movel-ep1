@@ -59,33 +59,33 @@
 			</div>
 		</div>
 		
-		<div data-role="page" id="categs">
-       		<div data-role="navbar" data-iconpos="top" id="navcategorias">
-				<ul>
-					<li><a href="#categChange?cat=1" data-icon="info">Cursos e palestras</a></li>
-					<li><a href="#categChange?cat=3" data-icon="info">Agenda Cultural</a></li>
-					<li><a href="#categChange?cat=105" data-icon="info">Defesas</a></li>
-					<li><a href="#categChange?cat=21" data-icon="info">Editoriais</a></li>
-					<li><a href="#categChange?cat=4" data-icon="info">Publicações</a></li>
-					<li><a href="#categChange?cat=5" data-icon="info">Quadro de Avisos</a></li>
-					
-					<li><a href="#categChange?cat=22" data-icon="info">Ciências</a></li>
-					<li><a href="#categChange?cat=23" data-icon="info">Cultura</a></li>
-					<li><a href="#categChange?cat=24" data-icon="info">Educação</a></li>
-					<li><a href="#categChange?cat=25" data-icon="info">Especiais</a></li>
-					<li><a href="#categChange?cat=26" data-icon="info">Esporte e Lazer</a></li>
-					<li><a href="#categChange?cat=27" data-icon="info">Institucional</a></li>
-					<li><a href="#categChange?cat=28" data-icon="info">Meio ambiente</a></li>
-					<li><a href="#categChange?cat=29" data-icon="info">Saúde</a></li>
-					<li><a href="#categChange?cat=30" data-icon="info">Sociedade</a></li>
-					<li><a href="#categChange?cat=31" data-icon="info">Tecnologia</a></li>
-				</ul>
+		<div data-role="page" id="categs" data-url="categs">
+			<div data-role="header">
+				<h1>Categorias</h1>
+				<a href="#all" data-icon="back">Voltar</a>
+				<a href="#config" data-icon="gear">Config</a>
+			</div>
+			<div data-role="content">		
+	       		<div data-role="navbar" data-iconpos="top" id="navcategorias">
+	       		</div>
        		</div>
        	</div>
         
         <div id="categChange" data-role="page" data-url="categChange">
-        	<div data-role="header"><h1></h1></div>
-        	<div data-role="content"></div>
+        	<div data-role="header">
+        		<h1></h1>
+        		<a href="javascript:app.refresh()" data-icon="refresh">Atualizar</a>
+				<a href="#config" data-icon="gear">Config</a></div>
+        	<div data-role="content">
+        	</div>
+        	<div data-role="footer" data-id="foo1" data-position="fixed">
+				<div data-role="navbar" data-iconpos="left">
+					<ul>
+						<li><a href="#all" data-icon="home">ALL</a></li>
+						<li><a href="#categs" data-icon="grid">Outras Categorias</a></li>
+					</ul>
+				</div>
+			</div>
 		</div>
         
         
