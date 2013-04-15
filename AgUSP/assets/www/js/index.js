@@ -102,6 +102,11 @@ var app = {
     	return entryLink[entryLink.length - 1];
     },
     
+    saveSliderValue: function() {
+    	app.settings.setNumFeedEntries($("#slider-1").val());
+    	history.back();
+    },
+    
     /////////////////////////////////////////////////////////////////////
     // holds getters and setters for config settings and persistent data.
     settings: {

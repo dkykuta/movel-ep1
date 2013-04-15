@@ -19,6 +19,7 @@ agUsp.dinamicContent = {
 		"cat=1143": {titulo: "Vídeos"},
 		},
 	categsInitialized : false,
+	configInitialized: false,
 	
 	init : function() {
 		$(document)
@@ -44,10 +45,18 @@ agUsp.dinamicContent = {
 										agUsp.dinamicContent.categoriesInit(u,
 												data.options);
 								}
+								
+								if (u.hash.search(/^#config/) !== -1) {
+									if (agUsp.dinamicContent.configInitialized == false) {
+										$("#slider-1").parent().parent().page();
+										agUsp.dinamicContent.configInitialized = true;
+									}
+									$("#slider-1").val(app.settings.getNumFeedEntries()).slider("refresh");
+								}
 							}
 						});
 	},
-
+	
 	showCategory : function(urlObj, options) {
 		var categoryKey = urlObj.hash.replace(/.*\?/, ""), pageSelector = urlObj.hash
 				.replace(/\?.*$/, ""),
