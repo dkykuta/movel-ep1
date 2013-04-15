@@ -6,3 +6,7 @@
 +-------------------------------------------------+
 
 RSS feed escolhido: Agência USP de notícias
+
+Nota: Como incluimos uma splash screen, alteramos o icone
+e incluimos um arquivo css, o tar estava excedendo o tamanho
+limite. Então retiramos a pasta bin do pacote.

@@ -21,6 +21,7 @@ entrega: pdf
 	mkdir $(FOLDERENTREGA)
 # copia os arquivos da entrega para a pasta
 	cp -r AgUSP $(FOLDERENTREGA)
+	rm -rf $(FOLDERENTREGA)/AgUSP/bin
 	cp README $(FOLDERENTREGA)
 	cp relatorio.pdf $(FOLDERENTREGA)
 	tar -czf $(PACOTENAME) $(FOLDERENTREGA)

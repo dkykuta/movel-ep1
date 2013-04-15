@@ -60,7 +60,10 @@ agUsp.dinamicContent = {
 	showCategory : function(urlObj, options) {
 		var categoryKey = urlObj.hash.replace(/.*\?/, ""), pageSelector = urlObj.hash
 				.replace(/\?.*$/, ""),
+			categoryName = "";
+		if (agUsp.dinamicContent.categories[categoryKey] != null) {
 			categoryName = agUsp.dinamicContent.categories[categoryKey].titulo;
+		}
 
 		var $page = $(pageSelector), 
 			$header = $page.children(":jqmData(role=header)"), 
