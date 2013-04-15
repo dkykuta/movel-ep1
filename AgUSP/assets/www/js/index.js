@@ -87,6 +87,7 @@ var app = {
     },
     
     googleFeedInitialize: function(url) {
+    	//app.checkConnection();
     	google.load("feeds", "1");
     	app.url = url;
     	
@@ -105,6 +106,26 @@ var app = {
     saveSliderValue: function() {
     	app.settings.setNumFeedEntries($("#slider-1").val());
     	history.back();
+    }, 
+
+    checkConnection: function() {
+    	//ISSO NAO FUNCIONA
+    	//AAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        var networkState = navigator.connection.type;
+        console.log("ConnectionState="+networkState);
+        console.log("IsOnline="+window.navigator.onLine);
+        alert("IsOnline="+window.navigator.onLine);
+        var states = {};
+        states[navigator.connection.UNKNOWN]  = 'Unknown connection';
+        states[navigator.connection.ETHERNET] = 'Ethernet connection';
+        states[navigator.connection.WIFI]     = 'WiFi connection';
+        states[navigator.connection.CELL_2G]  = 'Cell 2G connection';
+        states[navigator.connection.CELL_3G]  = 'Cell 3G connection';
+        states[navigator.connection.CELL_4G]  = 'Cell 4G connection';
+        states[navigator.connection.CELL]     = 'Cell generic connection';
+        states[navigator.connection.NONE]     = 'No network connection';
+
+        alert('Connection type: ' + states[networkState]);
     },
     
     /////////////////////////////////////////////////////////////////////
